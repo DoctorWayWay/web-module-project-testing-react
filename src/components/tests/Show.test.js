@@ -33,7 +33,11 @@ test("renders Loading component when prop show is null", () => {
   expect(loadingContainer).toBeInTheDocument();
 });
 
-test("renders same number of options seasons are passed in", () => {});
+test("renders same number of options seasons are passed in", () => {
+  render(<Show show={testShow} selectedSeason={"none"} />);
+  const seasonOptions = screen.getAllByTestId("season-option");
+  expect(seasonOptions).toHaveLength(testShow.seasons.length);
+});
 
 test("handleSelect is called when an season is selected", () => {});
 
