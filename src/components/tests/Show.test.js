@@ -39,7 +39,19 @@ test("renders same number of options seasons are passed in", () => {
   expect(seasonOptions).toHaveLength(testShow.seasons.length);
 });
 
-test("handleSelect is called when an season is selected", () => {});
+test("handleSelect is called when an season is selected", () => {
+  const handleSelectMock = jest.fn();
+  render(
+    <Show
+      show={testShow}
+      handleSelect={handleSelectMock}
+      selectedSeason={"none"}
+    />
+  );
+  const seasonSelector = screen.getByRole("combobox");
+  userEvent.selectOptions(seasonSelector, ["1"]);
+  expect(handleSelectMock).toBeCalled();
+});
 
 test("component renders when no seasons are selected and when rerenders with a season passed in", () => {});
 
